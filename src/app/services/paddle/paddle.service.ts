@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { GameService } from "../game/game.service";
+import { GameService } from "@/services/game/game.service";
+import { Injectable } from "@angular/core";
 
 export interface PaddleState {
   width: number;

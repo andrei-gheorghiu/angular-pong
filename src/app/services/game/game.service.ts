@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PaddleService, PaddleState } from "../paddle/paddle.service";
-import { BallService, BallState } from "../ball/ball.service";
-import { LayoutService } from "../layout/layout.service";
+import { PaddleService, PaddleState } from "@/services/paddle/paddle.service";
+import { BallService, BallState } from "@/services/ball/ball.service";
+import { LayoutService } from "@/services/layout/layout.service";
 import { BehaviorSubject } from "rxjs";
 
 interface GameState {
@@ -65,6 +65,8 @@ export class GameService implements GameState {
     this.ball.set({
       x: this.width / 2,
       y: 0,
+      xs: 1,
+      ys: 1,
       ...ball
     });
   }

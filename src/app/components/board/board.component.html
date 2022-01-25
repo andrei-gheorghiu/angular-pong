@@ -1,4 +1,6 @@
 <pre [innerText]="logger(gameData)" class="logger"></pre>
 <pong-paddle></pong-paddle>
 <pong-ball></pong-ball>
+<pong-overlay *ngIf="game.isPaused || game.isOver"
+              (restartGame)="startGame()"></pong-overlay>
 <div class="cursor"></div>

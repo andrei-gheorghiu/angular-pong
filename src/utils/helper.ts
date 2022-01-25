@@ -5,9 +5,9 @@ export const safeUnsubscribe = (subs: Subscription[]) => {
   subs.forEach(sub => sub && sub.unsubscribe())
 }
 
-export const observe = (o: BehaviorSubject<any>, compareWith = isEqual) =>
+export const reactive = (o: BehaviorSubject<any>, compareFn = isEqual) =>
   o.asObservable().pipe(
-    distinctUntilChanged(compareWith)
+    distinctUntilChanged(compareFn)
   );
 
 export const randomBetween = (min: number, max: number) => (max - min) * Math.random() + min

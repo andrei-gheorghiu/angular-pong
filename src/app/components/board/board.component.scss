@@ -17,11 +17,26 @@ pong-board {
     linear-gradient(217deg, rgb(33, 211, 227), rgba(0,0,255,0) 65%),
     url('../../../assets/823715.jpg') 50% /cover;
   position: relative;
-  &.paused {
+  &.is-paused, &.game-over {
     cursor: default;
   }
   .overlay {
     pointer-events: none;
+    button {
+      margin-bottom: 1rem;
+      cursor: pointer;
+      background-color: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.27);
+      color: white;
+      width: 300px;
+      padding: 1rem 0;
+      font-variant: small-caps;
+      font-size: 1rem;
+      &:hover {
+        background-color: rgba(255,255,255,.21);
+        border: 1px solid rgba(255,255,255,.42);
+      }
+    }
     > * {
       pointer-events: auto;
     }
@@ -52,9 +67,11 @@ pong-board {
     background-color: #0379;
     transition: backdrop-filter .42s linear .21s, background-color .35s ease-out;
   }
-  &.paused:before {
-    backdrop-filter: blur(7px);
-    background-color: #f504;
+  &.is-paused, &.game-over {
+    &:before {
+      backdrop-filter: blur(7px);
+      background-color: #f504;
+    }
   }
 }
 pong-ball {
@@ -76,7 +93,7 @@ pong-paddle {
   &:before, &:after {
     content: '';
     position: fixed;
-    --dots: rgba(194, 255, 0, .42);
+    --dots: rgba(194, 255, 0, .63);
   }
   &:before {
     width: 60px;
@@ -91,8 +108,10 @@ pong-paddle {
     border-right: 1px dotted var(--dots);
   }
 }
-.paused .cursor {
-  &:before, &:after {
-    content: none;
+.is-paused, .game-over {
+  .cursor {
+    &:before, &:after {
+      content: none;
+    }
   }
 }

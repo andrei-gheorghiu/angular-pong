@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { distinctUntilChanged, fromEvent, Subscription } from "rxjs";
+import { fromEvent, Subscription } from "rxjs";
 import { randomBetween, safeUnsubscribe } from "@/utils/helper";
 import { GameService } from "@/services/game/game.service";
 import { pick } from "lodash-es";
@@ -15,11 +15,17 @@ export class BoardComponent implements OnInit, OnDestroy {
   @HostBinding('style') get cursor() {
     return this._cursor
   }
+  @HostBinding('class') get gameStatus() {
+    return {
+      'game-over': this.game.isOver,
+      'is-paused': this.game.isPaused
+    }
+  }
 
   _subs: Subscription[] = [];
   _cursor: Record<string, string> = {};
   constructor(
-    private game: GameService,
+    public game: GameService,
     private elRef: ElementRef
   ) { }
 
@@ -32,7 +38,6 @@ export class BoardComponent implements OnInit, OnDestroy {
         }
       ),
       this.game.isPaused$
-        .pipe(distinctUntilChanged())
         .subscribe(
           isPaused => !isPaused && requestAnimationFrame(() => this.move())
         ),

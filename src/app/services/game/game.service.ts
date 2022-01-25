@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { PaddleService, PaddleState } from "@/services/paddle/paddle.service";
 import { BallService, BallState } from "@/services/ball/ball.service";
 import { LayoutService } from "@/services/layout/layout.service";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, combineLatestWith, distinctUntilChanged, map, Observable } from "rxjs";
+import { reactive } from "@/utils/helper";
+import { combineLatest } from "rxjs/operators";
 
 interface GameState {
   width: number;
@@ -18,9 +20,9 @@ interface GameState {
 })
 export class GameService implements GameState {
   private readonly IsOver = new BehaviorSubject<boolean>(false);
-  private readonly IsPaused = new BehaviorSubject<boolean>(false);
+  private readonly IsPaused = new BehaviorSubject<boolean>(true);
 
-  readonly isPaused$ = this.IsPaused.asObservable();
+  readonly isPaused$ = reactive(this.IsPaused);
 
   width = 0;
   height = 0;
@@ -36,7 +38,7 @@ export class GameService implements GameState {
   }
 
   get isPaused(): boolean {
-    return this.IsPaused.getValue() && !this.IsOver.getValue();
+    return this.IsPaused.getValue() && !this.isOver;
   }
 
   set isPaused(val) {

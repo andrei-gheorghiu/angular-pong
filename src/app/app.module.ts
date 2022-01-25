@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from '@/components/board/board.component';
 import { PaddleComponent } from '@/components/paddle/paddle.component';
 import { BallComponent } from '@/components/ball/ball.component';
+import { OverlayComponent } from './components/overlay/overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
     PaddleComponent,
-    BallComponent
+    BallComponent,
+    OverlayComponent
   ],
   imports: [
     BrowserModule

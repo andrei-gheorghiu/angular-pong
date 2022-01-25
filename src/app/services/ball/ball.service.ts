@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 
 import { GameService } from "@/services/game/game.service";
-import { observe } from "@/utils/helper";
+import { reactive } from "@/utils/helper";
 import { Injectable } from "@angular/core";
 
 export interface BallState {
@@ -27,9 +27,9 @@ export class BallService implements BallState {
   speed = 1;
   angle = 45;
 
-  x$ = observe(this.X);
-  y$ = observe(this.Y);
-  radius$ = observe(this.Radius);
+  x$ = reactive(this.X);
+  y$ = reactive(this.Y);
+  radius$ = reactive(this.Radius);
 
   get x(): number {
     return this.X.getValue();

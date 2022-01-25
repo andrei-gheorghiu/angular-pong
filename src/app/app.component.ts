@@ -5,7 +5,7 @@ import { IMousePosition, LayoutService } from "@/services/layout/layout.service"
 import { pick } from "lodash-es";
 
 @Component({
-  selector: 'app-root',
+  selector: 'pong-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {

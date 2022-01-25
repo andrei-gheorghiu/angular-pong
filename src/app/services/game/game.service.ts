@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { PaddleService, PaddleState } from "@/services/paddle/paddle.service";
 import { BallService, BallState } from "@/services/ball/ball.service";
 import { LayoutService } from "@/services/layout/layout.service";
-import { BehaviorSubject, combineLatestWith, distinctUntilChanged, map, Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { reactive } from "@/utils/helper";
-import { combineLatest } from "rxjs/operators";
 
 interface GameState {
   width: number;
